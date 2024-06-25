@@ -40,6 +40,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
      */
     @Override
     public Result<?> getUsersById(Long id) {
+        if (id == null) {
+            return Result.fail(500,"ID不能为空");
+        }
         Users users = usersMapper.selectById(id);
         if (users != null) {
             return Result.success(users);
